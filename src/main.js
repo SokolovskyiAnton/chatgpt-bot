@@ -5,11 +5,15 @@ import config from 'config'
 import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
 import {getRandomText, responseTexts} from "./utils.js";
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const INITIAL_SESSION = {
   messages: []
 }
-const bot = new Telegraf(config.get('TELEGRAM_BOT'))
+console.log(process.env)
+const bot = new Telegraf(process.env.TELEGRAM_BOT)
 
 bot.use(session())
 
