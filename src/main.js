@@ -7,19 +7,38 @@ dotenv.config()
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT)
 
-await bot
-  .use(session())
-  .command('new', async (ctx) => {
+bot.use(session())
+bot.command('new', async (ctx) => {
     ctx.session = INITIAL_SESSION
     await ctx.reply('Жду новой темы для беседы')
   })
-  .command('start', (ctx) => {
+bot.command('start', (ctx) => {
     ctx.reply('Привет, меня зовут Джарвис. Я буду помогать тебе искать информацию, но основе твоих голосовых или текстовых сообщений.')
   })
-  .on(message('voice'), async (ctx) => proccessVoiceMessage)
-  .on(message('text'), async (ctx) => proccessTextMessage)
-  .launch()
+bot.on(message('voice'), async (ctx) => proccessVoiceMessage)
+bot.on(message('text'), async (ctx) => proccessTextMessage)
 
 // signals of process interrupt
-process.once('SIGINT', () => bot.stop('SIGINT'))
-process.once('SIGTERM', () => bot.stop('SIGTERM'))
+
+async function start() {
+  try {
+    await bot.launch()
+
+    process.on('uncaughtException', (err) => {
+      console.error('Неперехваченное исключение:', err)
+      process.exit(1)
+    })
+
+    process.on('unhandledRejection', (reason) => {
+      console.error('Неперехваченное отклонение промиса:', reason)
+    })
+
+    process.once('SIGINT', () => bot.stop('SIGINT'))
+    process.once('SIGTERM', () => bot.stop('SIGTERM'))
+  } catch (e) {
+    console.log('Server Error', e.message)
+    process.exit(1)
+  }
+}
+
+start()
