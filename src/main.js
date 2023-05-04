@@ -18,6 +18,8 @@ bot.command('start', (ctx) => {
 bot.on(message('voice'), proccessVoiceMessage)
 bot.on(message('text'), proccessTextMessage)
 
-// signals of process interrupt
-
 await bot.launch()
+
+// signals of process interrupt
+process.once('SIGINT', () => bot.stop('SIGINT'))
+process.once('SIGTERM', () => bot.stop('SIGTERM'))
