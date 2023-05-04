@@ -8,8 +8,6 @@ import dotenv from 'dotenv'
 import http from 'http'
 dotenv.config()
 
-
-
 const INITIAL_SESSION = {
   messages: []
 }
@@ -69,11 +67,6 @@ bot.on(message('text'), async (ctx) => {
 })
 
 await bot.launch()
-http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'})
-  res.write('Hello World!')
-  res.end()
-}).listen(+process.env.PORT || 3000)
 
 // signals of process interrupt
 process.once('SIGINT', () => bot.stop('SIGINT'))
