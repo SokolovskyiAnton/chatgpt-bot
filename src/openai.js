@@ -1,5 +1,4 @@
 import { Configuration, OpenAIApi } from 'openai'
-import config from 'config'
 import { createReadStream  } from "fs";
 
 const CHAT_GPT_MODEL = 'gpt-3.5-turbo'

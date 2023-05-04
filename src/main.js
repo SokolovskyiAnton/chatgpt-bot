@@ -1,22 +1,14 @@
 import { Telegraf, session } from "telegraf";
 import { message } from "telegraf/filters";
 import { code } from "telegraf/format";
-import config from 'config'
 import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
 import {getRandomText, responseTexts} from "./utils.js";
 import dotenv from 'dotenv'
-import express from 'express'
-
+import http from 'http'
 dotenv.config()
-const app = express()
-const port = process.env.PORT || 3000
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`)
-})
+
+
 
 const INITIAL_SESSION = {
   messages: []
@@ -77,6 +69,11 @@ bot.on(message('text'), async (ctx) => {
 })
 
 await bot.launch()
+http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  res.write('Hello World!')
+  res.end()
+}).listen(+process.env.PORT || 3000)
 
 // signals of process interrupt
 process.once('SIGINT', () => bot.stop('SIGINT'))
