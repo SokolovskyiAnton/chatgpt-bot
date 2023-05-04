@@ -15,8 +15,8 @@ bot.command('new', async (ctx) => {
 bot.command('start', (ctx) => {
     ctx.reply('Привет, меня зовут Джарвис. Я буду помогать тебе искать информацию, но основе твоих голосовых или текстовых сообщений.')
   })
-bot.on(message('voice'), async (ctx) => await proccessVoiceMessage)
-bot.on(message('text'), async (ctx) => await proccessTextMessage)
+bot.on(message('voice'), proccessVoiceMessage)
+bot.on(message('text'), proccessTextMessage)
 
 // signals of process interrupt
 
