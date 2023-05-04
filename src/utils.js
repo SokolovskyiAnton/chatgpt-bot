@@ -16,3 +16,7 @@ export function getRandomText(arr) {
 
 export const responseTexts = ['Сообщение принял. Думаю...',
   'Секундочку.', 'Принял.', 'Сек.', 'Хм...']
+
+export const INITIAL_SESSION = {
+  messages: []
+}

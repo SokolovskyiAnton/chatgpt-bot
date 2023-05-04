@@ -1,7 +1,7 @@
 import { Telegraf, session } from "telegraf";
 import { message } from "telegraf/filters";
 import { proccessTextMessage, proccessVoiceMessage } from "./logic.js";
-import { INITIAL_SESSION } from "./helpers.js";
+import { INITIAL_SESSION } from "./utils.js";
 import dotenv from 'dotenv'
 dotenv.config()
 

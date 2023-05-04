@@ -1,8 +1,7 @@
 import { code } from "telegraf/format";
-import { getRandomText, responseTexts } from "./utils.js";
+import { getRandomText, responseTexts, INITIAL_SESSION } from "./utils.js";
 import { ogg } from "./ogg.js";
 import { openai } from "./openai.js";
-import { INITIAL_SESSION } from "./helpers.js";
 
 export async function proccessVoiceMessage(ctx) {
   ctx.session ??= INITIAL_SESSION
