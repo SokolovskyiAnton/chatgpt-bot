@@ -15,30 +15,9 @@ bot.command('new', async (ctx) => {
 bot.command('start', (ctx) => {
     ctx.reply('Привет, меня зовут Джарвис. Я буду помогать тебе искать информацию, но основе твоих голосовых или текстовых сообщений.')
   })
-bot.on(message('voice'), async (ctx) => proccessVoiceMessage)
-bot.on(message('text'), async (ctx) => proccessTextMessage)
+bot.on(message('voice'), async (ctx) => await proccessVoiceMessage)
+bot.on(message('text'), async (ctx) => await proccessTextMessage)
 
 // signals of process interrupt
 
-async function start() {
-  try {
-    await bot.launch()
-
-    process.on('uncaughtException', (err) => {
-      console.error('Неперехваченное исключение:', err)
-      process.exit(1)
-    })
-
-    process.on('unhandledRejection', (reason) => {
-      console.error('Неперехваченное отклонение промиса:', reason)
-    })
-
-    process.once('SIGINT', () => bot.stop('SIGINT'))
-    process.once('SIGTERM', () => bot.stop('SIGTERM'))
-  } catch (e) {
-    console.log('Server Error', e.message)
-    process.exit(1)
-  }
-}
-
-start()
+await bot.launch()
