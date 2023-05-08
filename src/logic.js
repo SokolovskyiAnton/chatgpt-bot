@@ -22,6 +22,7 @@ export async function proccessVoiceMessage(ctx) {
     })
     ctx.reply(response.content)
   } catch (e) {
+    ctx.reply(code(`У меня возникли проблемы с выполнением вашей просьбы. Почини меня: ${e.message}`))
     console.log(`Error voice message ${e.message}`)
   }
 }
@@ -34,12 +35,14 @@ export async function proccessTextMessage(ctx) {
     await ctx.reply(code(`Ваш запрос: ${text}`))
     ctx.session.messages.push({ role: openai.roles.USER, content: text })
     const response = await openai.chat(ctx.session.messages)
+
     ctx.session.messages.push({
       role: openai.roles.ASSISTANT,
       content: response.content
     })
     ctx.reply(response.content)
   } catch (e) {
+    ctx.reply(code(`У меня возникли проблемы с выполнением вашей просьбы. Почини меня: ${e.message}`))
     console.log(`Error voice message ${e.message}`)
   }
 }

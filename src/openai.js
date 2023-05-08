@@ -1,5 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai'
 import { createReadStream  } from "fs";
+import dotenv from 'dotenv'
+dotenv.config()
 
 const CHAT_GPT_MODEL = 'gpt-3.5-turbo'
 class Openai {
