@@ -22,7 +22,7 @@ export async function proccessVoiceMessage(ctx) {
     })
     ctx.reply(response.content)
   } catch (e) {
-    ctx.reply(code(`У меня возникли проблемы с выполнением вашей просьбы. Почини меня: ${e.message}`))
+    ctx.reply(code(`У меня возникли проблемы с выполнением вашей просьбы. Возможно вам стоит начать новую сессию, написав команду /new. Либо попробуйте позже.`))
     console.log(`Error voice message ${e.message}`)
   }
 }
@@ -42,7 +42,7 @@ export async function proccessTextMessage(ctx) {
     })
     ctx.reply(response.content)
   } catch (e) {
-    ctx.reply(code(`У меня возникли проблемы с выполнением вашей просьбы. Почини меня: ${e.message}`))
+    ctx.reply(code(`У меня возникли проблемы с выполнением вашей просьбы. Возможно вам стоит начать новую сессию, написав команду /new. Либо попробуйте позже.`))
     console.log(`Error voice message ${e.message}`)
   }
 }
