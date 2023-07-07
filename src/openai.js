@@ -3,7 +3,7 @@ import { createReadStream  } from "fs";
 import dotenv from 'dotenv'
 dotenv.config()
 
-const CHAT_GPT_MODEL = 'gpt-3.5-turbo'
+const CHAT_GPT_MODEL = 'gpt-4'
 class Openai {
   roles = {
     ASSISTANT: 'assistant',
